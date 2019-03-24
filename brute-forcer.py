@@ -5,8 +5,8 @@ import urllib.parse as U
 import urllib.error as E
 
 threads = 5
-target = 'http://testphp.vulnweb.com/'
-filepath = 'words.txt'
+target = ''
+filepath = ''
 ext = [".php"]
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
 
