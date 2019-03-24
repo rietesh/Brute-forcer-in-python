@@ -7,7 +7,7 @@ import urllib.error as E
 threads = 5
 target = 'http://testphp.vulnweb.com/'
 filepath = 'words.txt'
-resume =  'None'
+ext = [".php"]
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
 
 def wordlist_build(filepath):
@@ -51,7 +51,6 @@ def brut_dir(word_queue,extensions=None):
                 if len(response.data):
                     if response.status != 404:
                         print("[{}] ==> {}".format(response.status,url))
-                        #print(response.status)
 
             except (E.URLError,E.HTTPError):
                 if hasattr(E.HTTPError,'code') and E.HTTPError.code != 404:
@@ -59,8 +58,7 @@ def brut_dir(word_queue,extensions=None):
                 pass
 
 d_queue = wordlist_build(filepath)
-ext = [".php"]
 
 for i in range(threads):
-    t = threading.Thread(target=brut_dir,args=(d_queue,))
+    t = threading.Thread(target=brut_dir,args=(d_queue,ext,))
     t.start()
